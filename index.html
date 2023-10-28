@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Sistema de Conversão de Medidas</title>
+</head>
+
+<body>
+    <header>
+        <h1>Conversão de Medidas</h1>
+        <div id="secao_links">
+            <nav>
+                <a href="#secao_sobre">Sobre</a>
+                <a href="#secao_conversor">Conversor</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div id="secao_sobre">
+            <h2>Tutorial de Conversão de Medidas</h2>
+            <div id="secao_imagem">
+                <img src="./infoenem.com.br-comprimento.jpg" alt="Tabela de Conversão">
+            </div>
+            <div id="secao_lista">
+                <ol>
+                    <li><strong>Compreenda os sistemas de medição:</strong> Conheça os diferentes sistemas, como o SI e
+                        o
+                        Imperial.</li>
+                    <li><strong>Identifique as unidades de medida inicial e desejada:</strong> Saiba qual unidade você
+                        tem e
+                        para qual deseja converter.</li>
+                    <li><strong>Pesquise as relações de conversão:</strong> Encontre as relações entre as unidades de
+                        medida.</li>
+                    <li><strong>Use fatores de conversão:</strong> Multiplique ou divida a medida inicial por um fator
+                        apropriado.</li>
+                    <li><strong>Realize os cálculos necessários:</strong> Faça operações básicas mantendo a precisão.
+                    </li>
+                    <li><strong>Utilize ferramentas de conversão online:</strong> Recorra a aplicativos ou sites para
+                        facilitar o processo.</li>
+                    <li><strong>Verifique suas conversões:</strong> Certifique-se de que os resultados estão corretos.
+                    </li>
+                    <li><strong>Pratique a conversão:</strong> Quanto mais praticar, mais familiarizado ficará com os
+                        cálculos e as relações de conversão.</li>
+                </ol>
+                <p>Sempre verifique a precisão, especialmente em contextos técnicos ou científicos, e consulte fontes
+                    confiáveis para informações específicas de conversão.</p>
+            </div>
+        </div>
+
+        <div id="secao_conversor">
+            <div id="container">
+                <h2>Conversor de Medidas</h2>
+                <input type="number" name="valor" id="valor" placeholder="Valor">
+                <select name="tipo_medida1" id="tipo_medida1">
+                    <option value="" disabled selected>Selecione a Medida 1</option>
+                    <option value="Milimetro">Milimetro</option>
+                    <option value="Centimetro">Centimetro</option>
+                    <option value="Metro">Metro</option>
+                    <option value="Kilometros">Kilometros</option>
+                </select>
+                <select name="tipo_medida2" id="tipo_medida2">
+                    <option value="" disabled selected>Selecione a Medida 1</option>
+                    <option value="Milimetro">Milimetro</option>
+                    <option value="Centimetro">Centimetro</option>
+                    <option value="Metro">Metro</option>
+                    <option value="Kilometros">Kilometros</option>
+                </select>
+                <button onclick="converteMedidas()">Converter</button>
+                <p id="resultado"></p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        function converteMedidas() {
+            const valor = document.getElementById('valor').value;
+            const medida1 = document.getElementById('tipo_medida1').value;
+            const medida2 = document.getElementById('tipo_medida2').value;
+            let resultado;
+            let unidade = '';
+
+            if (medida1 === 'Milimetro') {
+                if (medida2 === 'Centimetro') {
+                    resultado = valor / 10;
+                } else if (medida2 === 'Metro') {
+                    resultado = valor / 1000;
+                } else if (medida2 === 'Kilometros') {
+                    resultado = valor / 1000000;
+                }
+            } else if (medida1 === 'Centimetro') {
+                if (medida2 === 'Milimetro') {
+                    resultado = valor * 10;
+                } else if (medida2 === 'Metro') {
+                    resultado = valor / 100;
+                } else if (medida2 === 'Kilometros') {
+                    resultado = valor / 100000;
+                }
+            } else if (medida1 === 'Metro') {
+                if (medida2 === 'Milimetro') {
+                    resultado = valor * 1000;
+                } else if (medida2 === 'Centimetro') {
+                    resultado = valor * 100;
+                } else if (medida2 === 'Kilometros') {
+                    resultado = valor / 1000;
+                }
+            } else if (medida1 === 'Kilometros') {
+                if (medida2 === 'Milimetro') {
+                    resultado = valor * 1000000;
+                } else if (medida2 === 'Centimetro') {
+                    resultado = valor * 100000;
+                } else if (medida2 === 'Metro') {
+                    resultado = valor * 1000;
+                }
+            }
+
+            switch (medida2) {
+                case 'Milimetro':
+                    unidade = 'mm';
+                    break;
+                case 'Centimetro':
+                    unidade = 'cm';
+                    break;
+                case 'Metro':
+                    unidade = 'm';
+                    break;
+                case 'Kilometros':
+                    unidade = 'km';
+                    break;
+                default:
+                    console.log('Escolha uma opção válida');
+                    break;
+            }
+
+            document.getElementById('resultado').innerText = `O valor convertido é: ${resultado} ${unidade}`;
+        }
+    </script>
+
+
+</body>
+
+</html>
